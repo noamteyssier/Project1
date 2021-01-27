@@ -37,7 +37,7 @@ python -m align \
   -I sequences/prot-0008.fa \
   -s scoring_matrices/BLOSUM62.mat \
   -m g -g 12 -e 5
-  
+
 ```
 
 ### testing
@@ -46,3 +46,13 @@ Testing is as simple as running
 python -m pytest
 ```
 from the root directory of this project.
+
+### Repo Organization
+
+All source code is found in `align/`
+
+Analysis and question answers found in `notebooks/`
+
+Sequencing data in `sequences/`
+
+Scoring matrices found in `scoring_matrices/`
