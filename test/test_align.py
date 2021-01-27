@@ -25,8 +25,8 @@ def test_fasta_io():
 	expected_header = "d1flp__ 1.1.1.1.2"
 	expected_seq = "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
 
-	sr = algs.SeqReader()
-	header, seq = sr.read_fasta("../data/prot-0004.fa")
+	io = algs.io()
+	header, seq = io.read_fasta("../sequences/prot-0004.fa")
 
 	assert (header == expected_header) & (seq == expected_seq)
 
@@ -60,23 +60,21 @@ def test_scoring_matrix_io():
 		[-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,-5,1]
 	])
 
+	io = algs.io()
+	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
 
-	pw = algs.PairwiseAligner(
-		"../data/prot-0004.fa",
-		"../data/prot-0004.fa",
-		"../scoring_matrices/BLOSUM50.mat"
-		)
-
-	assert (pw.submat - expected_mat).sum() == 0
+	assert (submat - expected_mat).sum() == 0
 
 def test_identical():
 	expected_seq = "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
 
+	io = algs.io()
+	header, seq = io.read_fasta("../sequences/prot-0004.fa")
+	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
+
 	for method in [algs.SmithWaterman, algs.NeedlemanWunsch]:
 		m_obj = method(
-			"../data/prot-0004.fa",
-			"../data/prot-0004.fa",
-			"../scoring_matrices/BLOSUM50.mat"
+			seq, seq, submat, idx_lookup
 			)
 
 		score, q1, q2 = m_obj.align()
@@ -85,18 +83,19 @@ def test_identical():
 		assert expected_seq == q1
 
 def test_alignment_score():
-	sw = algs.NeedlemanWunsch(
-		"../data/prot-0004.fa",
-		"../data/prot-0008.fa",
-		"../scoring_matrices/BLOSUM50.mat",
-		gamma = 5, opening_penalty = 10
-	)
-	score, q1, q2 = sw.align()
-	print(q1)
-	print(q2)
-	print(score)
 
-	assert True
+	io = algs.io()
+	h1, s1 = io.read_fasta("../sequences/prot-0004.fa")
+	h2, s2 = io.read_fasta("../sequences/prot-0008.fa")
+	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
+
+	sw = algs.NeedlemanWunsch(
+		s1, s2, submat, idx_lookup,
+		opening_penalty = 10, extension_penalty=5
+	)
+
+	score, q1, q2 = sw.align()
+	assert (score + 17 == 0)
 
 # runs tests
 def main():
