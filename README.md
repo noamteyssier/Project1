@@ -56,3 +56,8 @@ Analysis and question answers found in `notebooks/`
 Sequencing data in `sequences/`
 
 Scoring matrices found in `scoring_matrices/`
+
+### Documentation
+
+The API for the align module can be viewed by opening the html file under `_build/html/index.html`
+There is documentation the alignment classes as well as the IO for reading fastas and substitution matrices
