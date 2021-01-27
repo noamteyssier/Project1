@@ -7,7 +7,8 @@ Tools for Sequence / Substitution IO and Sequence Alignment (NeedlemanWunsch + S
 """
 
 import numpy as np
-
+import argparse
+import os
 
 class io:
 
@@ -714,29 +715,72 @@ class NeedlemanWunsch(_PairwiseAligner):
 		return (score, q1, q2)
 
 
+
+def get_args():
+
+	p = argparse.ArgumentParser()
+
+	p.add_argument(
+		"-i", "--input_1", required=True,
+		help = "fasta sequence to align"
+		)
+
+	p.add_argument(
+		"-I", "--input_2", required=True,
+		help = "fasta sequence to align"
+		)
+
+	p.add_argument(
+		"-m", '--method', required=True, type = str,
+		help = "Global or Local Alignment [gG[lobal] : global, lL[ocal] : local]"
+		)
+
+	p.add_argument(
+		"-s", "--sub", required=False,
+		default=os.path.join(
+			os.path.dirname(os.path.realpath(__file__)), "../scoring_matrices/BLOSUM50.mat"
+			),
+		help = "path of substitution matrix to use"
+		)
+
+	p.add_argument(
+		"-g", "--gap_open", required=False, default=11, type=int,
+		help = "cost of opening a gap"
+		)
+
+	p.add_argument(
+		"-e", "--gap_extension", required=False, default=3, type=int,
+		help = "cost of extending an existing gap"
+		)
+
+
+
+	args = p.parse_args()
+	return args
+
 def main():
 
-	fn_a = "../sequences/prot-0004.fa"
-	fn_b = "../sequences/prot-0008.fa"
-	fn_score = "../scoring_matrices/BLOSUM50.mat"
+	args = get_args()
 
 	io_obj = io()
-	h1, s1 = io_obj.read_fasta(fn_a)
-	h2, s2 = io_obj.read_fasta(fn_b)
-	idx_lookup, submat = io_obj.read_substitution_matrix(fn_score)
+	h1, s1 = io_obj.read_fasta(args.input_1)
+	h2, s2 = io_obj.read_fasta(args.input_2)
+	idx_lookup, submat = io_obj.read_substitution_matrix(args.sub)
 
+	method = SmithWaterman if args.method[0].upper() == "G" else NeedlemanWunsch
 
-	sw = SmithWaterman(
+	met_obj = method(
 		s1, s2, submat, idx_lookup,
-		opening_penalty=11, extension_penalty=3
+		opening_penalty=args.gap_open,
+		extension_penalty=args.gap_extension
 		)
-	score, q1, q2 = sw.align()
-	# sw.align()
+	score, q1, q2 = met_obj.align()
 
+	print()
 	print(q1)
 	print(q2)
-	print(score)
-
+	print()
+	print("Score : {}".format(score))
 
 
 if __name__ == '__main__':

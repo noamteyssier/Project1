@@ -3,15 +3,41 @@
 
 ![BuildStatus](https://github.com/ucsf-bmi-203-2021/HW1/workflows/HW1/badge.svg?event=push)
 
-In this assignment, you will implement two classical alignment algorithms and then evaluate each algorithm’s performance with a range of parameters. There are two parts to this assignment and Part 2 requires completion of Part 1. We recommend reading through both Part 1 and Part 2 before beginning this assignment. 
-
-* Part 1 - API and implementation
-* Part 2 - Evaluating alignments
-
 ### main
-Runs all code in align/\_\_main\_\_.py, useful for part 2
+To run the code from the command line use the following command :
+
 ```
 python -m align
+```
+
+This requires two input sequences and a decision of the alignment algorithm (global/local)
+```
+# example alignment (local)
+python -m align \
+  -i sequences/prot-0004.fa \
+  -I sequences/prot-0008.fa \
+  -m l
+
+# example alignment (global)
+python -m align \
+  -i sequences/prot-0004.fa \
+  -I sequences/prot-0008.fa \
+  -m g
+
+# example local alignment with different matrix
+python -m align \
+  -i sequences/prot-0004.fa \
+  -I sequences/prot-0008.fa \
+  -s scoring_matrices/BLOSUM62.mat \
+  -m l
+
+# example global alignment with given matrix and non-default gap loss (opening 12 / extension 5)
+python -m align \
+  -i sequences/prot-0004.fa \
+  -I sequences/prot-0008.fa \
+  -s scoring_matrices/BLOSUM62.mat \
+  -m g -g 12 -e 5
+  
 ```
 
 ### testing
