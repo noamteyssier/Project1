@@ -145,7 +145,7 @@ class io:
 		return (idx_lookup, submat)
 
 
-class _PairwiseAligner:
+class PairwiseAligner:
 
 	"""
 	Parent class for Alignment Methods
@@ -458,7 +458,7 @@ class _PairwiseAligner:
 		return self.__align__()
 
 
-class SmithWaterman(_PairwiseAligner):
+class SmithWaterman(PairwiseAligner):
 
 	"""
 	Protein Sequencing Alignment using Smith-Waterman Local Alignment
@@ -596,7 +596,7 @@ class SmithWaterman(_PairwiseAligner):
 		return (score, q1, q2)
 
 
-class NeedlemanWunsch(_PairwiseAligner):
+class NeedlemanWunsch(PairwiseAligner):
 
 	"""
 	Protein Sequencing Alignment using Needleman-Wunsch Global Alignment

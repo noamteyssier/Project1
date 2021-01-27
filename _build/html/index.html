@@ -175,6 +175,38 @@
 </dd></dl>
 
 <dl class="py class">
+<dt id="align.algs.PairwiseAligner">
+<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">PairwiseAligner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq1</span></em>, <em class="sig-param"><span class="n">seq2</span></em>, <em class="sig-param"><span class="n">submat</span></em>, <em class="sig-param"><span class="n">idx_lookup</span></em>, <em class="sig-param"><span class="n">opening_penalty</span><span class="o">=</span><span class="default_value">11</span></em>, <em class="sig-param"><span class="n">extension_penalty</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.PairwiseAligner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parent class for Alignment Methods</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq1</strong> – string of reference protein sequence</p></li>
+<li><p><strong>seq2</strong> – string of query protein sequence</p></li>
+<li><p><strong>submat</strong> – a subsitution matrix as a 2D numpy array</p></li>
+<li><p><strong>idx_lookup</strong> – a dictionary to map protein characters to their indices in submat</p></li>
+<li><p><strong>opening_penalty</strong> – the cost of opening a gap</p></li>
+<li><p><strong>extension_penalty</strong> – the cost of extending a previously opened gap</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="align.algs.PairwiseAligner.align">
+<code class="sig-name descname">align</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.PairwiseAligner.align" title="Permalink to this definition">¶</a></dt>
+<dd><p>Align 2 protein sequences</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(score, aligned_seq1, aligned_seq2)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="align.algs.SmithWaterman">
 <em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">SmithWaterman</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq1</span></em>, <em class="sig-param"><span class="n">seq2</span></em>, <em class="sig-param"><span class="n">submat</span></em>, <em class="sig-param"><span class="n">idx_lookup</span></em>, <em class="sig-param"><span class="n">opening_penalty</span><span class="o">=</span><span class="default_value">11</span></em>, <em class="sig-param"><span class="n">extension_penalty</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.SmithWaterman" title="Permalink to this definition">¶</a></dt>
 <dd><p>Protein Sequencing Alignment using Smith-Waterman Local Alignment</p>
