@@ -26,7 +26,7 @@ def test_fasta_io():
 	expected_seq = "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
 
 	io = algs.io()
-	header, seq = io.read_fasta("../sequences/prot-0004.fa")
+	header, seq = io.read_fasta("sequences/prot-0004.fa")
 
 	assert (header == expected_header) & (seq == expected_seq)
 
@@ -61,7 +61,7 @@ def test_scoring_matrix_io():
 	])
 
 	io = algs.io()
-	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
+	idx_lookup, submat = io.read_substitution_matrix("scoring_matrices/BLOSUM50.mat")
 
 	assert (submat - expected_mat).sum() == 0
 
@@ -69,8 +69,8 @@ def test_identical():
 	expected_seq = "SLEAAQKSNVTSSWAKASAAWGTAGPEFFMALFDAHDDVFAKFSGLFSGAAKGTVKNTPEMAAQAQSFKGLVSNWVDNLDNAGALEGQCKTFAANHKARGISAGQLEAAFKVLSGFMKSYGGDEGAWTAVAGALMGEIEPDM"
 
 	io = algs.io()
-	header, seq = io.read_fasta("../sequences/prot-0004.fa")
-	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
+	header, seq = io.read_fasta("sequences/prot-0004.fa")
+	idx_lookup, submat = io.read_substitution_matrix("scoring_matrices/BLOSUM50.mat")
 
 	for method in [algs.SmithWaterman, algs.NeedlemanWunsch]:
 		m_obj = method(
@@ -85,9 +85,9 @@ def test_identical():
 def test_alignment_score():
 
 	io = algs.io()
-	h1, s1 = io.read_fasta("../sequences/prot-0004.fa")
-	h2, s2 = io.read_fasta("../sequences/prot-0008.fa")
-	idx_lookup, submat = io.read_substitution_matrix("../scoring_matrices/BLOSUM50.mat")
+	h1, s1 = io.read_fasta("sequences/prot-0004.fa")
+	h2, s2 = io.read_fasta("sequences/prot-0008.fa")
+	idx_lookup, submat = io.read_substitution_matrix("scoring_matrices/BLOSUM50.mat")
 
 	sw = algs.NeedlemanWunsch(
 		s1, s2, submat, idx_lookup,
