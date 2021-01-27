@@ -1,0 +1,291 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Align &mdash; Alignment 27 January 2021 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Alignment
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Align</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+</div>
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Alignment</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Align</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="module-align.algs"></span><div class="section" id="align">
+<h1>Align<a class="headerlink" href="#align" title="Permalink to this headline">¶</a></h1>
+<p>Tools for Sequence / Substitution IO and Sequence Alignment (NeedlemanWunsch + SmithWaterman)</p>
+<dl class="py class">
+<dt id="align.algs.NeedlemanWunsch">
+<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">NeedlemanWunsch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq1</span></em>, <em class="sig-param"><span class="n">seq2</span></em>, <em class="sig-param"><span class="n">submat</span></em>, <em class="sig-param"><span class="n">idx_lookup</span></em>, <em class="sig-param"><span class="n">opening_penalty</span><span class="o">=</span><span class="default_value">11</span></em>, <em class="sig-param"><span class="n">extension_penalty</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.NeedlemanWunsch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Protein Sequencing Alignment using Needleman-Wunsch Global Alignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq1</strong> – string of reference protein sequence</p></li>
+<li><p><strong>seq2</strong> – string of query protein sequence</p></li>
+<li><p><strong>submat</strong> – a subsitution matrix as a 2D numpy array</p></li>
+<li><p><strong>idx_lookup</strong> – a dictionary to map protein characters to their indices in submat</p></li>
+<li><p><strong>opening_penalty</strong> – the cost of opening a gap</p></li>
+<li><p><strong>extension_penalty</strong> – the cost of extending a previously opened gap</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="align.algs.SmithWaterman">
+<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">SmithWaterman</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq1</span></em>, <em class="sig-param"><span class="n">seq2</span></em>, <em class="sig-param"><span class="n">submat</span></em>, <em class="sig-param"><span class="n">idx_lookup</span></em>, <em class="sig-param"><span class="n">opening_penalty</span><span class="o">=</span><span class="default_value">11</span></em>, <em class="sig-param"><span class="n">extension_penalty</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.SmithWaterman" title="Permalink to this definition">¶</a></dt>
+<dd><p>Protein Sequencing Alignment using Smith-Waterman Local Alignment</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>seq1</strong> – string of reference protein sequence</p></li>
+<li><p><strong>seq2</strong> – string of query protein sequence</p></li>
+<li><p><strong>submat</strong> – a subsitution matrix as a 2D numpy array</p></li>
+<li><p><strong>idx_lookup</strong> – a dictionary to map protein characters to their indices in submat</p></li>
+<li><p><strong>opening_penalty</strong> – the cost of opening a gap</p></li>
+<li><p><strong>extension_penalty</strong> – the cost of extending a previously opened gap</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="align.algs.io">
+<em class="property">class </em><code class="sig-prename descclassname">align.algs.</code><code class="sig-name descname">io</code><a class="headerlink" href="#align.algs.io" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functions for reading in sequences from Fasta files and substitution matrices</p>
+<dl class="py method">
+<dt id="align.algs.io.read_fasta">
+<code class="sig-name descname">read_fasta</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.io.read_fasta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in a fasta file and returns the first sequence as (header, sequence) tuple</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – path to a *.fa format file.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(header, sequence)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="align.algs.io.read_substitution_matrix">
+<code class="sig-name descname">read_substitution_matrix</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">file_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#align.algs.io.read_substitution_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in substitution matrix and populates idx_lookup and submat</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_path</strong> – path to a *.mat formatted matrix.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(character lookup, score matrix)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Noam Teyssier.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
