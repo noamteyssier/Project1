@@ -1,7 +1,7 @@
 # Project 1 - Sequence Alignment
 ## Due 01/27/2021
 
-![BuildStatus](https://github.com/ucsf-bmi-203-2021/HW1/workflows/HW1/badge.svg?event=push)
+![BuildStatus](https://github.com/noamteyssier/HW1/workflows/HW1/badge.svg?event=push)
 
 ### main
 To run the code from the command line use the following command :
